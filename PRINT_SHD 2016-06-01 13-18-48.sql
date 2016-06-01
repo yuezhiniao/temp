@@ -38,7 +38,8 @@ AS
 	----钱坤 20100519     
           [specialamount] [int] ,--特殊件    
           TCMAmount [int] ,   --中药件数   Add by xuh 20110215 根据鸿泰要求添加    
-          EquipAmount [int]  --器化件数    
+          EquipAmount [int],  --器化件数  
+          CorpType    VARCHAR (200) --统计类型  
 	---------------------------------    
         )    
       
@@ -82,7 +83,8 @@ AS
     SET     a.ClientName = b.ClientName ,
             a.WayID = c.SendWay ,
             a.Address = b.Address ,
-            a.SellCall = c.SellCall
+            a.SellCall = c.SellCall,
+            a.CorpType =b.CorpType
     FROM    #tt a
             INNER JOIN ClientUnit b WITH(NOLOCK) ON a.ClientID = b.ClientID
             INNER JOIN CorpCustomInfo c WITH(NOLOCK) ON a.ClientID = c.ClientID    
@@ -176,7 +178,10 @@ AS
 --            FROM #Money  FOR XML PATH('')), 1,1,'')) AS Remark ,
     memo AS Remark,
      (SELECT SUM(moneys) Moneys FROM #Money) AS AllSum,
-     @Memo1 AS GoodsType
+     @Memo1 AS GoodsType,
+     (CASE WHEN corptype='医疗机构'then '【普（专）】发票号码【                     】' 
+         when corptype='经营企业(零售)' then '【普（专）】发票号码【                     】'
+         ELSE '' END ) sType
     FROM    #tt    
     DROP TABLE #tt 
 	DROP TABLE #Money
