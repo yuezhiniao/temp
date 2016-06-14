@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Contact_y
+namespace Contact
 {
     public partial class Form1 : Form
     {
@@ -16,5 +16,13 @@ namespace Contact_y
         {
             InitializeComponent();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Contact List 1.0.\n Written by : yue ", "About");
+
+        }
+
+      
     }
 }
