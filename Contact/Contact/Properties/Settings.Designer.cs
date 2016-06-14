@@ -33,5 +33,16 @@ namespace Contact.Properties {
                 return ((string)(this["ContactDBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\ContactsDb.md" +
+            "f;Integrated Security=True")]
+        public string ContactsDbConnectionString {
+            get {
+                return ((string)(this["ContactsDbConnectionString"]));
+            }
+        }
     }
 }
